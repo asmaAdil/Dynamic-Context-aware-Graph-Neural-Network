@@ -7,7 +7,8 @@ from preprocessing import *
 import operator
 
 def sim_itemsOrUsers(v_id, v_id_context,history_uc_list,history_r_list):
-
+    # Generating graphs with weights used by attention network, DCGuv,DCGvu
+    #Note DCGuu is generated based on rating as well as context by seperate file Findsimilarusers based on rating which is further used to find similarity based on context
     v_id_contexttem=[]
     sim_item={}
     sim_item_ratings={}
@@ -53,6 +54,7 @@ def sim_itemsOrUsers(v_id, v_id_context,history_uc_list,history_r_list):
                 i=i+1
             else:
                 break
+    #top 10 neighbours , multiple neighbours have been choosen 10,15,20,25, 30. best results werte on 15            
     sorted_simItems_rat=  dict(sorted(first10valsrat.items(), key=operator.itemgetter(1), reverse=True))
     j=0
     finalfirst5vals = {}
