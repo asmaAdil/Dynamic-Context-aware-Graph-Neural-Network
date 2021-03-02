@@ -25,7 +25,8 @@ class Social_Encoder(nn.Module):
         self.embed_dim = embed_dim
         self.device = cuda
         self.linear1 = nn.Linear(2 * self.embed_dim, self.embed_dim)  #
-
+        
+    #DCGuu fid similar users with respect to context information given
     def SimilarwrtContext(self, uv_id, context ):
         test_cont=[]
         counter=0
