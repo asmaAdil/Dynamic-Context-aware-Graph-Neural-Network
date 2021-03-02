@@ -63,5 +63,5 @@ class UV_Aggregator(nn.Module):
             att_history = att_history.t()
 
             embed_matrix[i] = att_history
-        to_feats = embed_matrix   #(n (neighoubors )x64)
+        to_feats = embed_matrix  
         return to_feats
