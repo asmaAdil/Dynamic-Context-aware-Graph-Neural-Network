@@ -7,14 +7,14 @@ import random
 from Attention import Attention
 
 
-class UV_Aggregator(nn.Module):
+class User_Item_Context_Aggregator(nn.Module):
     """
     item and user aggregator: for aggregating embeddings of neighbors (item/user aggreagator).
     """
 
     def __init__(self, v2e, r2e,c2e, u2e, embed_dim,num_context, cuda="cpu", uv=True):
-        super(UV_Aggregator, self).__init__()
-        #print("Intialize UV aggregator")
+        super(User_Item_Context_Aggregator, self).__init__()
+        #print("Intialize User_Item_Context_Aggregator")
         self.uv = uv
         self.v2e = v2e
         self.r2e = r2e
