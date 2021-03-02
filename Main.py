@@ -448,7 +448,7 @@ def main():
 
     # neighobrs
     print("****************user  neighbors with respect to context****************")
-    agg_u_social_context = Social_Context)Aggregator(u2e, c2e, embed_dim, cuda=device) #, uv=True
+    agg_u_social_context = Social_Context_Aggregator(u2e, c2e, embed_dim, cuda=device) #, uv=True
     enc_su = Social_Context_Encoder(u2e, embed_dim, history_u_list,  history_ur_list,history_uc_list, agg_u_social_context, cuda=device) #, uv=True
 
 
