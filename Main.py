@@ -122,7 +122,7 @@ def train(model, device, train_loader, optimizer, epoch, best_rmse, best_mae):
 
             batch_nodes_u, batch_nodes_v, context_l, labels_list = data
             optimizer.zero_grad()
-            loss = model.loss(batch_nodes_u.to(device), batch_nodes_v.to(device),context_l.to(device), labels_list.to(device)) #call to forward of graphRec
+            loss = model.loss(batch_nodes_u.to(device), batch_nodes_v.to(device),context_l.to(device), labels_list.to(device)) 
             loss.backward(retain_graph=True)
             optimizer.step()
             running_loss += loss.item()
