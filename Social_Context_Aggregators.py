@@ -6,15 +6,15 @@ import random
 from Attention import Attention
 
 
-class Social_Aggregator(nn.Module):
+class Social_Context_Aggregator(nn.Module):
     """
     Social Aggregator: for aggregating embeddings of social neighbors.
     """
 
     def __init__(self, u2e, c2e, embed_dim, cuda="cpu"):
-        super(Social_Aggregator, self).__init__()
+        super(Social_Context_Aggregator, self).__init__()
 
-        #print("Intialize Social aggregator")
+        #print("Intialize Social Context aggregator")
         #self.features = u2e
         self.device = cuda
         self.u2e = u2e
