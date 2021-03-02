@@ -35,7 +35,7 @@ Asma Sattar, Davide Bacciu,.
 class DCGNN(nn.Module):
 
     def __init__(self, enc_u,enc_su, enc_v_history,enc_sv, c2e, r2e,num_context):
-        super(GraphRec, self).__init__()
+        super(DCGNN, self).__init__()
 
         self.enc_u = enc_u
         self.enc_su = enc_su
