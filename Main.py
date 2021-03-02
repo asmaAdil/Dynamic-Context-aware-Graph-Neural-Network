@@ -27,12 +27,12 @@ import os
 import scipy.sparse as sp
 
 """
-DCGNCO: Dynamic Context Aware Graph Neural Network. 
+DCGNN: Dynamic Context Aware Graph Neural Network. 
 Asma Sattar, Davide Bacciu,. 
 """
 
 
-class GraphRec(nn.Module):
+class DCGNN(nn.Module):
 
     def __init__(self, enc_u,enc_su, enc_v_history,enc_sv, c2e, r2e,num_context):
         super(GraphRec, self).__init__()
@@ -45,7 +45,7 @@ class GraphRec(nn.Module):
         self.c2e=c2e
         self.num_context=num_context
 
-        print(f"I am GraphRec {self.embed_dim}")
+        print(f"I am DCGNN {self.embed_dim}")
         self.linear2= nn.Linear( self.embed_dim*self.num_context, self.embed_dim)
         self.w_r1 = nn.Linear(self.embed_dim , self.embed_dim)
 
@@ -173,7 +173,7 @@ def test(model, device, test_loader):
 
 def main():
     # Training settings
-    parser = argparse.ArgumentParser(description='Social Recommendation: GraphRec model')
+    parser = argparse.ArgumentParser(description='Item Recommendation: DCGNN model')
     parser.add_argument('--batch_size', type=int, default=40, metavar='N', help='input batch size for training')
     parser.add_argument('--embed_dim', type=int, default=64, metavar='N', help='embedding size')
     parser.add_argument('--lr', type=float, default=0.01, metavar='LR', help='learning rate')
@@ -219,13 +219,7 @@ def main():
         NUMCLASSES = 71
 
     # Splitting dataset in training, validation and test set
-    if DATASET == 'toy_dataset' :
-        dir_data = './data/toy_dataset'
-        datasplit_path= dir_data + ".pickle"
-        path_data = dir_data + ".pickle"
-        print(f"I am called and path is {datasplit_path}")
-
-    elif DATASET == 'ml_1m' or DATASET == 'ml_10m':
+    if DATASET == 'ml_1m' or DATASET == 'ml_10m':
         if FEATURES:
             datasplit_path = 'data/' + DATASET + '/withfeatures_split_seed' + str(DATASEED) + '.pickle'
         else:
@@ -469,8 +463,8 @@ def main():
     agg_v_social_context = Social_Aggregator(v2e, c2e, embed_dim, cuda=device) #, uv=True
     enc_sv = Social_Encoder(v2e, embed_dim, history_v_list, history_vr_list, history_vc_list, agg_v_social_context, cuda=device) #, uv=True
     # model
-    graphrec = GraphRec(enc_u, enc_su,enc_v_history,enc_sv,c2e,r2e,num_context).to(device)
-    optimizer = torch.optim.RMSprop(graphrec.parameters(), lr=args.lr, alpha=0.9)
+    dcggnn_co_so = DCGNN(enc_u, enc_su,enc_v_history,enc_sv,c2e,r2e,num_context).to(device)
+    optimizer = torch.optim.RMSprop(dcggnn_co_so.parameters(), lr=args.lr, alpha=0.9)
 
     best_rmse = 9999.0
     best_mae = 9999.0
@@ -479,8 +473,8 @@ def main():
 
     for epoch in range(200):
 
-        train(graphrec, device, train_loader, optimizer, epoch, best_rmse, best_mae)
-        val_rmse, val_mae = val(graphrec, device, val_loader)
+        train(dcggnn_co_so, device, train_loader, optimizer, epoch, best_rmse, best_mae)
+        val_rmse, val_mae = val(dcggnn_co_so, device, val_loader)
 
         # please add the validation set to tune the hyper-parameters based on your datasets.
         print(f"epoch-- {epoch} --- val_rmse {val_rmse}----  val_mae {val_mae} ")
@@ -491,7 +485,7 @@ def main():
             best_epoch = epoch
             best_mae = val_mae
             endure_count=0
-            expected_rmse, mae = test(graphrec, device, test_loader)
+            expected_rmse, mae = test(dcggnn_co_so, device, test_loader)
         else:
             endure_count +=1
         print("val rmse: %.4f, val mae:%.4f " % (val_rmse, val_mae))
