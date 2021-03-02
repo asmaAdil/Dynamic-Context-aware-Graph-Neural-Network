@@ -66,10 +66,10 @@ def sim_itemsOrUsers(v_id, v_id_context,history_uc_list,history_r_list):
                 break
     return finalfirst5vals
 
-class UV_Encoder(nn.Module):
+class User_Item_Context_Encoder(nn.Module):
 
     def __init__(self, features, embed_dim, history_uv_lists, history_r_lists,history_uc_list, aggregator,uv_c, cuda="cpu", uv=True):
-        super(UV_Encoder, self).__init__()
+        super(ser_Item_Context_Encoder, self).__init__()
 
         #print(f"Initualize UV encoder {embed_dim}")
         self.features = features
@@ -129,9 +129,6 @@ class UV_Encoder(nn.Module):
         self_feats = self.features.weight[nodes]
         # self-connection could be considered.
         combined = torch.cat([self_feats, neigh_feats], dim=1)  # for context_prority coovatinate with  contextual embedding for tmp_history_uc
-
-
-
 
         combined = F.relu(self.linear1(combined))
         return combined
