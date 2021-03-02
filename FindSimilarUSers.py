@@ -63,4 +63,4 @@ def find_n_neighbours(df,n):
 
 # top 30 neighbours for each user
 sim_user_30_u = find_n_neighbours(similarity_with_user,5)
-sim_user_30_u.to_csv(r'D:\A PHD\Codes Trials\GraphRec\GraphRec-WWW19-master\GraphRec-WWW19-master\data\LDOS\LDOSSimilarUsers.csv')
+sim_user_30_u.to_csv(r'...\data\LDOS\LDOSSimilarUsers.csv')
