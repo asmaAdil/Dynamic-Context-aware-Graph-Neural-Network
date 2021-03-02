@@ -7,12 +7,12 @@ from torch.nn import init
 import torch.nn.functional as F
 
 
-class Social_Encoder(nn.Module):
+class Social_Context_Encoder(nn.Module):
 
     def __init__(self, features,embed_dim,history_uv,  history_r, history_uvc,   aggregator, base_model=None, cuda="cpu"):
-        super(Social_Encoder, self).__init__()
+        super(Social_Context_Encoder, self).__init__()
 
-        #print("Intialize Social Encoder")
+        #print("Intialize Social Context Encoder")
         self.features = features
         self.history_uv = history_uv
         self.history_r = history_r
