@@ -34,7 +34,8 @@ class Social_Aggregator(nn.Module):
             #e_u = torch.t(feature_neigbhors)
 
             u_rep = self.u2e.weight[nodes[i]]
-
+            
+            #gamma effect
             att_w = self.att(e_u, u_rep, num_neighs)
             att_history = torch.mm(e_u.t(), att_w).t()
             embed_matrix[i] = att_history
