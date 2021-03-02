@@ -4,7 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import pairwise_distances
 
 
-data_dir = 'D:\A PHD\Codes Trials\GraphRec\GraphRec-WWW19-master\GraphRec-WWW19-master\data\LDOS'
+data_dir = '...\data\LDOS'
 files = ['/ratings.txt']
 sep = '\t'
 filename = data_dir + files[0]
