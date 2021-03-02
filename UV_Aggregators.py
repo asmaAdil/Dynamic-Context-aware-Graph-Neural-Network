@@ -56,8 +56,8 @@ class UV_Aggregator(nn.Module):
             #e_c=e_c.permute(0, 2, 1)[:, :, -1]
             x = torch.cat((e_uv, e_r, e_c), 1) #concatinale each item embedding with its label embedding and context embedding
             x = F.relu(self.w_r1(x))
-            o_history = F.relu(self.w_r2(x))
-
+            o_history = F.relu(self.w_r2(x)
+            # alpha (between user and items) and beta (between item and users)effect
             att_w = self.att(o_history, uv_rep, num_histroy_item)
             att_history = torch.mm(o_history.t(), att_w)
             att_history = att_history.t()
