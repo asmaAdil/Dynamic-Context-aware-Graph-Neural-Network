@@ -64,3 +64,4 @@ def find_n_neighbours(df,n):
 # top 30 neighbours for each user
 sim_user_30_u = find_n_neighbours(similarity_with_user,5)
 sim_user_30_u.to_csv(r'...\data\LDOS\LDOSSimilarUsers.csv')
+#out of these neighbours find the context wise similiar neighbours 
