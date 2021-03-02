@@ -18,3 +18,7 @@ To run:
  
  2-python Main.py
  
+ References:
+ Initial baseline of code is take from  https://github.com/wenqifan03/GraphRec-WWW19
+ 
+ 
