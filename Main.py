@@ -7,11 +7,11 @@ import numpy as np
 import time
 import random
 from collections import defaultdict
-from UV_Encoders import UV_Encoder
-from UV_Aggregators import UV_Aggregator
+from User_Item_Context_Encoders import User_Item_Context_Encoder
+from User_Item_Context_Aggregators import User_Item_Context_Aggregator
 from Context_encoder import Context_Encoder
-from Social_Encoders import Social_Encoder
-from Social_Aggregators import Social_Aggregator
+from Social_Context_Encoders import Social_Context_Encoder
+from Social_Context_Aggregators import Social_Context_Aggregator
 from data_utils import *
 from preprocessing import *
 import torch.nn.functional as F
@@ -443,25 +443,24 @@ def main():
     print("****************user feature****************")
     #userfeature
     # features: item * rating
-    agg_u_history = UV_Aggregator(v2e, r2e,c2e, u2e, embed_dim, num_context,cuda=device, uv=True)
-    print(f" input to UV Encoder is history_u_lists and history_ur_lists")
-    enc_u = UV_Encoder(u2e, embed_dim, history_u_list, history_ur_list,history_uc_list, agg_u_history,user_context_train, cuda=device, uv=True)
+    agg_u_history = User_Item_Context_Aggregator(v2e, r2e,c2e, u2e, embed_dim, num_context,cuda=device, uv=True)
+    enc_u = User_Item_Context_Encoder(u2e, embed_dim, history_u_list, history_ur_list,history_uc_list, agg_u_history,user_context_train, cuda=device, uv=True)
 
     # neighobrs
     print("****************user  neighbors with respect to context****************")
-    agg_u_social_context = Social_Aggregator(u2e, c2e, embed_dim, cuda=device) #, uv=True
-    enc_su = Social_Encoder(u2e, embed_dim, history_u_list,  history_ur_list,history_uc_list, agg_u_social_context, cuda=device) #, uv=True
+    agg_u_social_context = Social_Context)Aggregator(u2e, c2e, embed_dim, cuda=device) #, uv=True
+    enc_su = Social_Context_Encoder(u2e, embed_dim, history_u_list,  history_ur_list,history_uc_list, agg_u_social_context, cuda=device) #, uv=True
 
 
     # item feature: user * rating
     print("*****************item Features****************")
-    agg_v_history = UV_Aggregator(v2e, r2e, c2e,u2e, embed_dim, num_context,cuda=device, uv=False)
-    enc_v_history = UV_Encoder(v2e,embed_dim,history_v_list,history_vr_list,history_vc_list,agg_v_history,item_context_train,cuda=device, uv=False)
+    agg_v_history = User_Item_Context_Aggregator(v2e, r2e, c2e,u2e, embed_dim, num_context,cuda=device, uv=False)
+    enc_v_history = User_Item_Context_Encoder(v2e,embed_dim,history_v_list,history_vr_list,history_vc_list,agg_v_history,item_context_train,cuda=device, uv=False)
 
 
     print("****************item  neighbors with respect to context****************")
-    agg_v_social_context = Social_Aggregator(v2e, c2e, embed_dim, cuda=device) #, uv=True
-    enc_sv = Social_Encoder(v2e, embed_dim, history_v_list, history_vr_list, history_vc_list, agg_v_social_context, cuda=device) #, uv=True
+    agg_v_social_context = Social_Context_Aggregator(v2e, c2e, embed_dim, cuda=device) #, uv=True
+    enc_sv = Social_Context_Encoder(v2e, embed_dim, history_v_list, history_vr_list, history_vc_list, agg_v_social_context, cuda=device) #, uv=True
     # model
     dcggnn_co_so = DCGNN(enc_u, enc_su,enc_v_history,enc_sv,c2e,r2e,num_context).to(device)
     optimizer = torch.optim.RMSprop(dcggnn_co_so.parameters(), lr=args.lr, alpha=0.9)
