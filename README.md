@@ -19,9 +19,9 @@ To run:
  
  Guidelines:
  
- In order to get results of DCGNN_co : Use User-item-Context Encoder  and  User-item-Context Aggrgator
+ DCGNN_co : Use User-item-Context Encoder  and  User-item-Context Aggrgator
  
- In order to get results of DCGNN_co_so : Use User-item-Context Encoder, User-item-Context Aggrgator, Social-Context Encoder and Social Context Aggregator
+ DCGNN_co_so : Use User-item-Context Encoder, User-item-Context Aggrgator, Social-Context Encoder and Social Context Aggregator
  
  Environment Setting:
  
