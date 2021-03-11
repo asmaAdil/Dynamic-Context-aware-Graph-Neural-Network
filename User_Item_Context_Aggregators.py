@@ -37,6 +37,7 @@ class User_Item_Context_Aggregator(nn.Module):
             num_histroy_item = len(history)
             tmp_label = history_r[i]
             tmp_context=history_c[i]
+            NonZeroContext = np.nonzero(tmp_context)[0]
             if self.uv == True:
                 # user component
                 e_uv = self.v2e.weight[history]
@@ -58,7 +59,7 @@ class User_Item_Context_Aggregator(nn.Module):
             x = F.relu(self.w_r1(x))
             o_history = F.relu(self.w_r2(x)
             # alpha (between user and items) and beta (between item and users)effect
-            att_w = self.att(o_history, uv_rep, num_histroy_item)
+            att_w = self.att(o_history, uv_rep, num_histroy_item)  #for enabling second type of attention use len(NonZeroContext)
             att_history = torch.mm(o_history.t(), att_w)
             att_history = att_history.t()
 
