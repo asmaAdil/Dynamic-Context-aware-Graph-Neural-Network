@@ -54,7 +54,7 @@ def sim_itemsOrUsers(v_id, v_id_context,history_uc_list,history_r_list):
                 i=i+1
             else:
                 break
-    #top 10 neighbours , multiple neighbours have been choosen 10,15,20,25, 30. best results werte on 15            
+    #top 10 neighbours , multiple neighbours have been choosen 5, 10,15,20,25, 30. for best results choose 10 neighbours           
     sorted_simItems_rat=  dict(sorted(first10valsrat.items(), key=operator.itemgetter(1), reverse=True))
     j=0
     finalfirst5vals = {}
