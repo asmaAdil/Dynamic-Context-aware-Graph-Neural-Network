@@ -29,7 +29,7 @@
   
   pytorch: 0.2+
  
- ####Acknowledgment:
+Acknowledgment:
  The original version of this code base was from GraphRec. We owe many thanks to Wenqi Fan for making his code available.
  [1] Wenqi Fan, Yao Ma , Qing Li, Yuan He, Eric Zhao, Jiliang Tang, and Dawei Yin. Graph Neural Networks for Social Recommendation.
  
