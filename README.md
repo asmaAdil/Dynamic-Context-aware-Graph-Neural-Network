@@ -1,6 +1,6 @@
 # Dynamic-Context-aware-Graph-Neural-Network
 
-</b>Datasets:</b>
+**Datasets:**
 
   1- LDOS
   
@@ -11,19 +11,19 @@
   4-Travel-STS
   
   
-To run:
+**To run:**
 
  1- Choose Dataset
  
  2-python Main.py
  
- Guidelines:
+ **Guidelines:**
  
  DCGNN_co : Use User-item-Context Encoder  and  User-item-Context Aggrgator
  
  DCGNN_co_so : Use User-item-Context Encoder, User-item-Context Aggrgator, Social-Context Encoder and Social Context Aggregator
  
- Environment Setting:
+ **Environment Setting:**
  
   python: 3.6
   
